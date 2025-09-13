@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "com.z4hi.proscenium",
+        "paths": ["*", "/", "/redirect", "/onboarding/*"]
+      }
+    ]
+  }
+}
