@@ -41,7 +41,7 @@ export default function SuccessPage() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="text-center max-w-md mx-auto px-4">
-        <h1 className="text-2xl font-bold text-foreground mb-4">Success!</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-4">Redirecting...</h1>
         
         {isRedirecting && (
           <div className="mb-6">
