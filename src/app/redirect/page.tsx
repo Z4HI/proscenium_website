@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 
 export default function RedirectPage() {
   useEffect(() => {
-    window.location.href = 'proscenium://onboarding/success';
+    // For Expo WebBrowser, use the custom scheme directly
+    
+    window.location.href = 'https://proscenium-website.vercel.app/onboarding/success';
   }, []);
 
   return (
