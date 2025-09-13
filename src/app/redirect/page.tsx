@@ -9,25 +9,19 @@ export default function SuccessPage() {
   useEffect(() => {
     const attemptRedirect = () => {
       try {
-        // Create a hidden iframe to attempt the redirect
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = 'proscenium://onboarding/success';
-        document.body.appendChild(iframe);
+        // Use the Universal Link that matches your AASA configuration
+        const universalLink = 'https://proscenium-website.vercel.app/onboarding/success';
         
-        // Remove iframe after a short delay
-        setTimeout(() => {
-          document.body.removeChild(iframe);
-        }, 1000);
+        // Direct redirect (no iframe needed)
+        window.location.href = universalLink;
         
-        // Show fallback after 2 seconds
+        // Fallback after 2 seconds
         setTimeout(() => {
           setIsRedirecting(false);
           setShowFallback(true);
         }, 2000);
-        
       } catch (error) {
-        console.log('Redirect failed:', error);
+        console.error('Redirect failed:', error);
         setIsRedirecting(false);
         setShowFallback(true);
       }
