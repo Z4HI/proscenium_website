@@ -1,12 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Success - Proscenium",
-  description: "Redirecting to Proscenium app",
-};
 
 export default function SuccessPage() {
   const [showFallback, setShowFallback] = useState(false);
