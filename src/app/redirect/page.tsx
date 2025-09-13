@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 
 export default function RedirectPage() {
   useEffect(() => {
-    // For Expo WebBrowser, use the custom scheme to return to app
+    // Signal to the app that the process is complete
+    // The app should close the WebBrowser when it detects this page load
     window.location.href = 'proscenium://onboarding/success';
   }, []);
 
