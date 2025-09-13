@@ -8,32 +8,35 @@ export default function SuccessPage() {
 
   useEffect(() => {
     const attemptRedirect = () => {
-      // Store the current time to detect if we're still on the page
-      const startTime = Date.now();
-      
-      // Try to redirect to the app
-      window.location.href = 'proscenium://onboarding/success';
-      
-      // Check if we're still on the page after a short delay
-      setTimeout(() => {
-        const timeOnPage = Date.now() - startTime;
+      try {
+        // Create a hidden iframe to attempt the redirect
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = 'proscenium://onboarding/success';
+        document.body.appendChild(iframe);
         
-        // If we've been on the page for more than 1.5 seconds, 
-        // the app probably didn't open
-        if (timeOnPage > 1500) {
+        // Remove iframe after a short delay
+        setTimeout(() => {
+          document.body.removeChild(iframe);
+        }, 1000);
+        
+        // Show fallback after 2 seconds
+        setTimeout(() => {
           setIsRedirecting(false);
           setShowFallback(true);
-        }
-      }, 1500);
+        }, 2000);
+        
+      } catch (error) {
+        console.log('Redirect failed:', error);
+        setIsRedirecting(false);
+        setShowFallback(true);
+      }
     };
 
-    // Try redirect immediately
-    attemptRedirect();
+    // Try redirect after a short delay to ensure page is loaded
+    setTimeout(attemptRedirect, 500);
   }, []);
 
-  const handleManualRedirect = () => {
-    window.location.href = 'proscenium://onboarding/success';
-  };
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">
@@ -50,15 +53,6 @@ export default function SuccessPage() {
         {showFallback && (
           <div className="space-y-4">
             <p className="text-muted-foreground mb-4">
-              Having trouble opening the app? Try clicking the button below:
-            </p>
-            <button
-              onClick={handleManualRedirect}
-              className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-            >
-              Open Proscenium App
-            </button>
-            <p className="text-sm text-muted-foreground">
               If you don&apos;t have the app installed, please download it from your app store.
             </p>
           </div>
