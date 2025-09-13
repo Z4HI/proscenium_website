@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 
 export default function RedirectPage() {
   useEffect(() => {
-    // Simple redirect to the app
     window.location.href = 'proscenium://onboarding/success';
   }, []);
 
